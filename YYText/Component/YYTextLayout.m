@@ -50,7 +50,7 @@ static inline UIEdgeInsets UIEdgeInsetRotateVertical(UIEdgeInsets insets) {
         for (NSUInteger i = 0, max = lines.count; i < max; i++) {
             YYTextLine *line = lines[i];
             CGPoint pos = line.position;
-            pos.y = line.row * _fixedLineHeight + _fixedLineHeight * 0.9 + container.insets.top;
+            pos.y = line.row * _fixedLineHeight + _fixedLineHeight * 0.9  + container.insets.top - _fixedLineHeight * 0.35;
             line.position = pos;
         }
     }
