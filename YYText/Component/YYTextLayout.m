@@ -50,7 +50,7 @@ static inline UIEdgeInsets UIEdgeInsetRotateVertical(UIEdgeInsets insets) {
         for (NSUInteger i = 0, max = lines.count; i < max; i++) {
             YYTextLine *line = lines[i];
             CGPoint pos = line.position;
-            pos.y = line.row * _fixedLineHeight + _fixedLineHeight * 0.9  + container.insets.top - _fixedLineHeight * 0.35;
+            pos.y = line.row * _fixedLineHeight + _fixedLineHeight * 0.9  + container.insets.top;
             line.position = pos;
         }
     }
@@ -400,6 +400,7 @@ OSSpinLockUnlock(&_lock);
     // set cgPath and cgPathBox
     if (container.path == nil && container.exclusionPaths.count == 0) {
         CGRect rect = (CGRect) {CGPointZero, container.size };
+        rect.size.height += 50; // 计算后的行高，在最后一行有emoji的情况下，使用原来的行高会取不到最后一行 CTLine
         rect = UIEdgeInsetsInsetRect(rect, container.insets);
         rect = CGRectStandardize(rect);
         cgPathBox = rect;
